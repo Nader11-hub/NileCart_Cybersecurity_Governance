@@ -1,0 +1,13 @@
+graph TD
+    Customer["Customer / Cairo Consumer"] -->|Places Order & Payment| Store["Online Store App (A4)"]
+    Store -->|Stores PII & Orders| Orders["Customer Orders (A1)"]
+    Store -->|Payment Gateway API| PayProvider["External Payment Provider"]
+    PayProvider -->|Settlement Reports| Fin["Finance Officer (A5)"]
+    Orders -->|Fulfillment Data| Wh["Warehouse Staff & Handhelds (A10)"]
+    Wh -->|Updates Stock| Inv["Inventory Database (A2)"]
+    Wh -->|Courier Dispatch Handoff| Courier["Courier Dispatch Files (A7)"]
+    Store -->|Identity & Credentials| IAM["Staff IAM & MFA Store (A3)"]
+    Admin[
+IT Administrator
+] -->|Backup & Restore| Backups["Backup Archives (A8)"]
+    Admin -->|Audit & Security Monitoring| Logs["Security & Access Logs (A9)"]

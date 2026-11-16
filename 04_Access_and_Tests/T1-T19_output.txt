@@ -1,0 +1,26 @@
+====================================================================================================================================
+ID   | Account   | Resource/Action          | Rule    | Expected | Actual | Result | Risk   | Failed condition(s)
+------------------------------------------------------------------------------------------------------------------------------------
+T1   | sup-01    | order_file/read          | Rule 1  | ALLOW    | ALLOW  | PASS   | R1/R2  | -
+T2   | sup-02    | order_file/read          | Rule 1  | DENY     | DENY   | PASS   | R2     | object_assigned
+T3   | sup-03    | order_file/read          | Rule 1  | DENY     | DENY   | PASS   | R1     | account_active
+T4   | wh-01     | refunds/approve          | Rule 2  | DENY     | DENY   | PASS   | R5     | correct_role
+T5   | fin-01    | refunds/approve          | Rule 2  | DENY     | DENY   | PASS   | R5     | approver_not_requester
+T6   | wh-01     | inventory/update         | RBAC    | ALLOW    | ALLOW  | PASS   | R4     | -
+T7   | orphan-01 | order_file/read          | Rule 1  | DENY     | DENY   | PASS   | R1     | correct_role
+T8   | it-01     | admin_settings/configure | Rule 3  | DENY     | DENY   | PASS   | R3     | change_ticket_approved
+T9   | fin-02    | refunds/approve          | Rule 2  | ALLOW    | ALLOW  | PASS   | R5     | -
+T10  | fin-03    | refunds/approve          | Rule 2  | DENY     | DENY   | PASS   | R1/R5  | mfa_verified
+T11  | it-01     | admin_settings/configure | Rule 3  | ALLOW    | ALLOW  | PASS   | R3     | -
+T12  | it-02     | admin_settings/configure | Rule 3  | DENY     | DENY   | PASS   | R1/R3  | mfa_verified
+T13  | it-01     | order_file/read          | Rule 1  | DENY     | DENY   | PASS   | R2     | correct_role
+T14  | sup-01    | inventory/update         | RBAC    | DENY     | DENY   | PASS   | R4     | correct_role
+T15  | fin-04    | refunds/approve          | Rule 2  | DENY     | DENY   | PASS   | R1/R5  | account_active
+T16  | it-03     | admin_settings/configure | Rule 3  | DENY     | DENY   | PASS   | R1/R3  | account_active
+T17  | fin-02    | admin_settings/configure | Rule 3  | DENY     | DENY   | PASS   | R3     | correct_role
+T18  | wh-03     | inventory/update         | RBAC    | DENY     | DENY   | PASS   | R4     | account_active
+T19  | ghost-99  | order_file/read          | N/A     | DENY     | DENY   | PASS   | R1     | unknown_account
+====================================================================================================================================
+Summary: 19 passed, 0 failed out of 19 tests (4 ALLOW cases, 15 DENY cases).
+PEP audit log entries written: 19
+OVERALL: ALL CHECKS PASSED
